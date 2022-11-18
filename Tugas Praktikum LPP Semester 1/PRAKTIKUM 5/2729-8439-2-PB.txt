@@ -1,0 +1,431 @@
+    ANALISIS PERANCANGAN KEBUTUHAN KOPI BEST SELLER UNTUK
+        MEMENUHI PERMINTAAN DI CAFE KOPI TITIK DENGAN
+                MENGGUNAKAN METODE PERAMALAN
+
+                                          Dhiya Jannati 1, Santika Sari2 *
+           1,2
+                 Teknik Industri, Universitas Pembangunan Nasional Veteran Jakarta, Jakarta Selatan 1
+                                           Email: santika.sari@upnvj.ac.id
+
+
+                                                    Abstrak
+
+             Pandemi Covid 19 memberikan dampak terhadap industri di Indonesia. Salah satu industri
+      yang terkena dampak dari Covid 19 ini adalah industri coffee shop. Adanya pandemi Covid 19 ini
+      menyebabkan ketidakpastian dalam penjualan produk kopi yang menyebabkan coffee shop
+      kesulitan dalam menentukan bahan baku untuk periode selanjutnya. Untuk mengatasi masalah
+      tersebut, diperlukan adanya peramalan untuk mengetahui kebutuhan bahan baku berupa biji kopi.
+      Penelitian ini bertujuan untuk meramalkan jumlah produk best seller di coffee “kopi titik” yaitu
+      kopi susu, Americano dan Capuccino sehingga perusahaan dapat mendapatkan gambaran
+      mengenai jumlah penjualan produk di periode yang akan datang. Selain itu, perusahaan juga dapat
+      melakukan pemesanan kepada supplier sehingga kebutuhan bahan baku dalam memenuhi produk
+      best seller dapat terpenuhi. Metode yang digunakan dalam penelitian ini adalah peramalan
+      kuantitatif yaitu peramalan yang menggunakan data masa lalu untuk mengetahui kebutuhan
+      dimasa mendatang. Hasil yang didapatkan dari penelitian ini adalah pola penjualan kopi best
+      seller di Cafe Kopi titik yaitu pola tren yang kemudian menggunakan metode double exponential
+      smoothing dengan pendekatan satu parameter (Des Brown) dan dua parameter (Des Holt); MAPE
+      dari hasil peramalan yaitu 0,268285274% untuk kopi susu, 0,36874754% untuk americano dan
+      0,389056107% untuk cappucino. Hasil peramalan untuk 5 bulan kedepan yaitu 3.498 gelas
+      dengan rincian 1.920 gelas kopi susu, 754 gelas americano dan 824 gelas untuk cappucino.
+
+      Kata kunci: Perancangan, Kopi, Permintaan, Peramalan
+
+                                                    Abstract
+
+      The Covid 19 pandemic has an impact on industry in Indonesia. One of the industries affected by
+      Covid 19 is the coffee shop industry. The existence of the Covid 19 pandemic caused uncertainty
+      in the sale of coffee products which caused the coffee shop to have difficulty determining raw
+      materials for the next period. To overcome this problem, forecasting is needed to determine the
+      raw material needs in the form of coffee beans. This study aims to predict the number of best-
+      selling products in "Kopi Titik" coffee. Namely coffee milk, Americano and Capuccino so that
+      the company can get an idea of the number of product sales in the coming period. In addition,
+      companies can also place orders with suppliers so that the raw material needs to fulfill best seller
+      products can be met. The method used in this research is quantitative forecasting, that is
+      forecasting that uses past data to determine future needs. The results obtained from this study are
+      the best seller coffee sales pattern at the Point Coffee Cafe, namely a trend pattern which then
+      uses the double exponential smoothing method with one parameter (Des Brown) and two
+      parameter (Des Holt) approaches; MAPE from the forecast results is 0.268285274% for milk
+      coffee, 0.36874754% for americano and 0.389056107% for cappuccino. The forecast results for
+      the next 5 months are 3.498 cups with details of 1.920 cups of milk coffee, 754 glasses of
+      americano and 824 cups of cappuccino.
+
+      Keywords: Designing, Coffee, Demand, Forecast
+
+                                                           sebesar 4,76 persen terhadap total ekspor dunia
+PENDAHULUAN                                                (FAOSTAS,2016). Negara tujuan ekspor kopi
+     Indonesia merupakan penghasil kopi terbesar           Indonesia yang utama adalah Amerika Serikat dengan
+keempat didunia tahun 2015 dengan peran rata-rata          peran pasar rerata sebesar 19,35 persen dari total
+
+
+9                                                           BINA TEKNIKA, Volume 17 Nomor 1, Edisi Juni 2020, 9-15
+ekspor kopi Indonesia. Diikuti oleh Jepang, Jerman                 menu yang tersedia seperti (Kopi susu, americano,
+dan Italia, masing-masing dengan peran pasar                       cappucino). Tiga menu diantaranya menu kopi susu,
+rata-rata sebesar 14,96; 15,88; dan 6,71 persen                    Americano dan cappuccino yang termasuk dalam
+(Departemen      Perdagangan,      2010).     Menurut              daftar best seller pada kopi titik. Kondisi pandemi
+International Coffee Organization (ICO), “konsumsi                 saat ini dapat mengakibatkan ketidak pastian pada
+kopi meningkat dari tahun ke tahun sehingga                        penjualan di kopi titik. Hal ini dikarenakan aturan
+peningkatan produksi kopi di Indonesia memiliki                    aturan yang di keluarkan semasa pandemi dapat
+peluang yang cukup besar”. Data tahunan konsumsi                   membatasi jumlah pengunjung dalam kopi titik.
+kopi Indonesia yang dikeluarkan oleh Global                        Kemudian kebutuhkan bahan baku juga harus dipesan
+Agricultural Information Network menunjukkan                       dari lokasi yang cukup jauh dari lokasi kopi titik.
+proyeksi konsumsi domestik pada 2019/2020                          Peramalan dalam penelitian ini bertujuan untuk
+mencapai 294.000ton atau sekitar 13,9%                             meramalkan jumlah produk yang terjual di kopi titik
+dibandingkan pada tahun sebelumnya mencapai                        sehingga perusahaan dapat mendapatkan gambaran
+258.000 ton. Hal ini ditandai dengan kemunculan                    mengenai jumlah penjualan produk di periode yang
+Coffee shop sebagai bisnis baru dalam industri kopi.               akan datang selain itu perusahaan juga dapat
+Menurut riset yang dilakukan oleh Toffin, jumlah                   melakukan pemesanan kepada bahan baku sehingga
+kedai kopi di Indonesia meningkat secara signifikan                kebutuhan bahan baku dalam memenuhi produk best
+dalam tiga tahun terakhir. Hasil riset Toffin bersama              seller dapat terpenuhi.
+Majalah Mix menunjukan jumlah kedai kopi di
+Indonesia pada Agustus 2019 mencapai lebih dari                    TINJAUAN PUSTAKA
+2.950 gerai, meningkat hampir tiga kali lipat                      Peramalan
+dibandingkan pada tahun 2016 yang hanya sekitar                          Peramalan merupakan suatu usaha untuk
+1.000 (Toffin, 2020). Munculnya industri coffee shop               meramalkan keadaan dimasa mendatang melalui
+yang pesat saat ini membawa dampak baru kedalam                    pengujian keadaan masa lalu (Handoko, 1984:260).
+gaya hidup konsumen. Seiring berkembangnya                         Definisi lain forecasting yaitu suatu usaha untuk
+industri ini, coffee shop di Indonesia mengalami                   melihat situasi dan kondisi pada masa yang akan
+banyak perubahan khususnya perubahan konsep                        datang dengan cara memperkirakan pengaruh situasi
+sehingga marak bermunculan coffee shop bernuansa                   dan kondisi pada masa yang akan datang terhadap
+modern yang disesuaikan dengan gaya hidup                          perkembangan di masa yang akan datang (Ginting,
+konsumen saat ini. Bahan baku yang digunakan                       2007).
+untuk coffee shop salah satunya adalah bijikopi. Biji              Jenis-Jenis Peramalan
+kopi yang didapatkan dari petani lokal. Akan tetapi                       Metode     peramalan      digunakan   untuk
+coffee shop sendiri banyak mengalami kegagalan                     memperkirakan kondisi dimasa yang akan datang
+perihal dalam jumlah pasokan bahan baku biji kopi.                 untuk menghindari kerugian akibat ketidakpastian.
+Hal ini berdampak pada ketidak sesuaian pada jumlah                Menurut (Ginting, 2007) metode peramalan dibagi
+permintaan pelanggan dengan jumlah bahan baku                      dalam beberapa segi bergantung pada sifatnya dan
+yang dimiliki. Untuk mengatasi permasalahan                        cara melihatnya, jika dilihat dari jangka waktu
+tersebut perlu dilakukan adanya peramalan dalam                    ramalan yang disusun, maka peramalan dibedakan
+memenuhi jumlah stok bahan baku biji kopi.                         menjadi 2, yaitu:
+       Peramalan merupakan sebuah alat bantu untuk                  1. Peramalan jangka panjang, yaitu peramalan
+perancangan yang efektif dan efisien. Peramalan                         yang dilakukan untuk penyusunan lebih dari satu
+dapat memperkirakan kuantitas kebutuhan pada masa                       setengah tahun atau tiga semester.
+yang akan dating dengan menggunakan data histori.                   2. Peramalan jangka pendek, yaitu peramalan yang
+Metode yang dipilih dalam peramalan permintaan ini                      dilakukan untuk penyusunan hasil ramalan
+adalah metode time series karena dirasa yang paling                     dengan jangka waktu yang kurang dari satu
+tepat. Walaupun meramalkan suatu berdasarkan dari                       setengah tahun atau tiga semester.
+data sebelumnya data peramalan tidaklah selalu benar
+yang diakibatkan oleh faktor lain yang menyebabkan                      Berdasarkan sifat ramalan yang telah disusun,
+hasil dari peramalan tidak selalu sama dengan pada                  maka peramalan dapat dibedakan atas dua macam,
+saat kenyataannya yang disebut dengan Forecast                      yaitu (Ginting, 2007):
+error. Dengan adanya peramalan ini perusahaan                       1. Peramalan       kualitatif, yaitu  peramalan
+dapat menentukan supply bahan baku untuk                               berdasarkan data kualitatif masa lalu.
+memenuhi permintaan penjualan dimasa mendatang,                        Prediksi yang dibuat tergantung pada orang
+perusahaan dapat menentukan kapan waktu produksi                       yang menyusun hasilnya.
+dan berapa lama waktu produksi yang di butuhkan.
+                                                                    2. Peramalan kuantitatif, yaitu peramalan
+Kopi titik merupakan sebuah coffee shop yang baru
+membuka usaha bisnisnya dalam 5 bulan terakhir,
+                                                                       berdasarkan data kuantitatif masa lalu. Hasil
+
+
+
+Analisis Perancangan Kebutuhan Kopi Best Seller (Jannati, D; Sari, S)                                               10
+     prediksi bebrgantung pada metode yang                   hari besar yang dapat mempengaruhi jumlah
+     digunakan dalam prediksi.                               permintaan diubah kedalam persyaratan teknis
+Metode Peramalan                                             menjadi “bagaimana” pada langkah berikutnya.
+1. Metode Kualitatif                                      3. Cycle
+   Metode peramalan yang bersifat subyektif, karena          Pola data yang dipengaruhi oleh adanya fluktuasi
+   dipengaruhi oleh banyak faktor seperti intuisi,           karena faktor tertentu dalam jangka panjang dan
+   emosi, dan pengalaman seseorang. Metode ini               biasanya lebih dari 1 tahun seperti faktor politik
+   digunakan apabila tidak tersedianya data masa             atau berhubungan dengan siklus bisnis.
+   lalu, yang kemudian dilakukan peramalan yang           4. Trend
+   berdasarkan        pendapat     atau     pengalaman       Pola data yang menggambarkan adanya
+   seseorang/ahli untuk menghasilkan suatu                   pergerakan data yang mengalami peningkatan
+   keputusan.                                                atau penurunan secara berkala.
+2. Metode Kuantitatif
+   Peramalan kuantitatif dapat digunakan apabila          Ukuran performansi Peramalan
+   terdapat informasi mengenai masa lalu, informasi       1. Mean Forecast Error (MFE)
+   dalam bentuk numerik/angka, dan dapat                     Mean Forecast Error (MFE) dihitung dengan
+   diasumsikan bahwa beberapa aspek pola masa lalu           menjumlahkan semua kesalahan peramalan
+   akan terus berlanjut di masa mendatang.                   selama periode peramalan dan membaginya
+   1) Metode Time Series                                     dengan jumlah periode peramalan. MFE
+       Metode time series dilakukan dengan                   dinyatakan dalam persamaan sebagai berikut:
+       menggunakan data masa lalu untuk                                           ∑ 𝐴𝑡 − 𝐹𝑡
+                                                                          𝑀𝐴𝐷 =
+       meramalkan kejadian di masa yang akan                                          𝑛
+       datang dengan cara melihat pola data.
+       Beberapa jenis metode yang ada pada time           2. Mean Absolute Deviation (MAD)
+       series, yaitu:                                        Mean Absolute Deviation (MAD) merupakan
+       a. Moving Average (Metode rata-rata                   rata – rata kesalahan mutlak selama periode
+          bergerak)                                          tertentu tanpa memperhatikan apakah hasil
+          Metode moving average diolah dengan                peramalan lebih besar atau lebih kecil jika
+          menggunakan data aktual di masa lalu               dibandingkan dengan kenyataannya. MAD
+          untuk membuat permalan dengan asumsi               dinyatakan dalam persamaan sebagai berikut:
+          data yang dolah stabil sepanjang waktu                                  ∑ |𝐴𝑡 − 𝐹𝑡 |
+                                                                          𝑀𝐴𝐸 =
+          peramalan.                                                                   𝑛
+       b. Exponential         Smoothing        (Metode
+          Pemulusan Eksponensial)                         3. Mean Squared Error (MSE)
+          Metode Exponential Smoothing yaitu                 Mean Square Error (MSE) dihitung dengan
+          metode peramalan rata-rata bergerak                menjumlahkan kuadrat semua kesalahan
+          dengan pembobotan.                                 peramalan pada setiap periode dan membaginya
+       c. Trend Projection                                   dengan jumlah periode peramalan. MSE
+          Metode        tren      dilakukan     dengan       dinyatakan dalam persamaan sebagai berikut:
+          menyamakan garis trend pada serangkaian                                 ∑(𝐴𝑡 − 𝐹𝑡)2
+                                                                         𝑀𝑆𝐸 =
+          data     masa      lalu     yang    kemudian                                  𝑛
+          diproyeksikan dengan garis pada masa yang
+          akan datang untuk peramalan jangka              4. Mean Absolute Percentage Error (MAPE)
+          menengah atau panjang                              Merupakan nilai rata-rata kesalahan yang
+                                                             diambil dari rerata diferensiasi antara absolut
+Jenis Pola Data                                              selisih nilai aktual dan nilai peramalan dengan
+       Menurut Pakaja, Naba, dan Purwanto (2012)             nilai aktual itu sendiri. MAPE dinyatakan dalam
+dalam Sinthia (2019), terdapat 4 jenis pola data yaitu:      persamaan sebagai berikut :
+1. Horizontal
+   Pola data acak tidak dapat diprediksi karena tidak                               |𝐴𝑡 − 𝐹𝑡|
+                                                                                ∑
+   memiliki pola secara khusus. Pola ini terjadi                     𝑀𝐴𝑃𝐸 =            𝐴𝑡     𝑥 100
+   apabila setiap titik permintaan berada di sekitar                                   𝑛
+   rata-rata.
+2. Seasonal
+   Pola data yang terbentuk karena adanya banyak
+   faktor musiman dalam kuartal tertentu (hari,
+   minggu, atau bulan) seperti cuaca atau peringatan
+
+
+11                                                        BINA TEKNIKA, Volume 17 Nomor 1, Edisi Juni 2020, 9-15
+Pemilihan Metode                                                   Metode Pengolahan Data
+      Pada penelitian ini, penulis mengambil jurnal                     Pengolahan data pada penelitian ini terkait
+uang berjudul “Peramalan Menggunakan Metode                        penjualan dari 3 menu Best Seller pada café Kopi
+Double Exponential Smoothing dan Verifikasi Hasil                  Titik yaitu Kopi Susu, Americano dan Cappucino
+Peramalan Menggunakan Grafik Pengendalian                          pada bulan Juli - November 2020 yang diolah
+Tracking Signal” dari Humairo’ Dyah Puji Habsari                   menggunakan metode peramalan dengan metode Des
+dkk, Sebagai bahan rujukkan dalam pengumpulan da                   Brown dan Des Holt, dan di analisis dengan beberapa
+pengolahan data menggunakan metode Double                          metode yang ada untuk memperoleh presentase
+Exponential Smoothing. Untuk referensi dalam                       kesalahan yang terjadi guna mendapatkan metode
+mendapatkan parameter terbaik di cari dengan                       peramalan terbaik.
+program solver yang tersedia di excel dengan jurnal
+rujukan yang berjudul “Pengukuran Kinerja Metode                   Flowchart Penelitian
+Peramalan Tipe Exponential Smoothing dalam
+Parameter Terbaiknya” dari Mahtahul Hakimah dkk
+dalam penelitian ini. Oleh karena itu, metode Double
+Exponential Smoothing Brown dan Double
+Exponential Smoothing Holt perlu digunakan dalam
+penelitian ini untuk meramalkan penjualan Kopi
+Susu, Americano dan Cappucino
+
+METODOLOGI PENELITIAN
+Jenis dan Sumber Data
+1. Data Primer
+   Data yang diperoleh dari lapangan secara langsung
+   melalui observasi dan wawancara dengan pihak
+   terkait. Data primer yang telah di kumpullkan berupa
+   data penjualan café Kopi Titik pada Juli – November
+   2020.
+2. Data Sekunder
+   Data yang diperoleh secara tidak langsung atau yang
+   telah di sajikan oleh pihak lain maupun pihak
+   perusahaan. Data sekunder yang telah di kumpulkan
+   dalam penelitian ini berupa profil perusahaan yang
+   berasal dari data histori perusahaan.
+
+Metode Pengumpulan Data
+1. Wawancara
+   Merupakan proses pengumpulan data dengan cara
+   melakukan tanya jawab secara langsung dengan
+   pihak terkait mengenai objek yang diteliti pada
+   penelitian ini yaitu dengan pihak manager
+   mengenai data penjualan pada café Kopi Titik.
+
+2. Observasi
+   Merupakan proses pengumpulan data dengan cara
+   pengamatan langsung di tempat kerja praktek                                  Gambar 1 Flowchart Penelitian
+   untuk memperoleh data penjualan perusahaan
+
+3. Dokumentasi
+   Merupakan proses pengumpulan data dengan cara
+   memperoleh data perusahaan yang sudah ada
+   pada perusahaan tersebut seperti data penjualan
+
+4. Penelitian Kepustakaan
+   Merupakan proses pengumpulan data dengan cara
+   mencari pengetahuan terkait dari jurnal, artikel
+   maupun buku yang berkaitan dengan penelitian.
+
+
+Analisis Perancangan Kebutuhan Kopi Best Seller (Jannati, D; Sari, S)                                              12
+ANALISIS DAN PEMBAHASAN DATA                            Ketiga pola yang ditunjukkan pada data untuk
+Pengumpulan Data                                   Kopi Susu, Americano, dan Cappucino diatas
+                                                   ketiganya menunjukkan pola data tren. Artinya
+     Tabel 1 Data Penjualan Kopi Café Kopi Titik   penjualan dari produk Kopi Susu, Americano dan
+                                                   Cappucino menunjukkan pola yang cenderung
+                                                   naik, sehingga metode peramalan yang dapat
+                                                   digunakan adalah Double Exponential Smoothing
+                                                   yang terdiri dari Brown dan Holt.
+
+                                                   Pemilihan Model Peramalan
+                                                   1. Double Exponential Smoothing dari Brown
+
+                                                         Tabel 2 Hasil Peramalan dengan Brown
+     Data penjualan pada selama 5 bulan akan
+diolah untuk mendapatkan nilai peramalan untuk
+penjualan pada 5 bulan kedepan dengan
+menggunakan metode peramalan (forecasting) dan
+kemudian membandingkan nilai kesalahan
+peramalan untuk menentukan metode yang paling
+baik diantaranya.
+
+Penentuan Pola Data                                  Peramalan ini dilakukan dengan menggunakan
+                                                     metode double exponensial smoothing dengan
+                                                     pendekatan satu parameter (Des Brown). Pada
+                                                     penelitian ini didapatkan hasil perkiraan kopi
+                                                     yang terjual adalah sebanyak 3.498 gelas,
+                                                     dengan rincian 1.920 gelas untuk Kopi Susu,
+                                                     754 gelas Americano, dan 824 gelas untuk
+                                                     Cappucino. Pada pengolahan data dilakukan uji
+                                                     dengan kriteria out of control untuk menguji
+                                                     data yang diprediksi dan untuk mengetahui
+           Gambar 2 Pola Data Kopi Susu              apakah hasil yang diprediksi berada dalam
+         (Sumber : Pengumpulan Data, 2020)           rentang kendali, dalam hal ini data yang
+                                                     diperoleh berada dalam rentang kendali maka
+                                                     data tersebut dapat digunakan.
+
+                                                   2. Double Exponential Smoothing dari Holt
+
+                                                              Tabel 3 Hasil Peramalan dengan Holt
+
+
+
+
+           Gambar 3 Pola Data Americano
+         (Sumber : Pengumpulan Data, 2020)
+
+
+
+
+                                                     Peramalan ini dilakukan dengan menggunakan
+                                                     metode double exponensial smoothing dengan
+                                                     pendekatan dua parameter (Des Holt). Pada
+                                                     penelitian ini didapatkan hasil perkiraan kopi yang
+                                                     terjual adalah sebanyak 5.144 gelas, dengan
+           Gambar 4 Pola Data Cappucino              rincian 2.600 gelas untuk Kopi Susu, 1.362 gelas
+         (Sumber : Pengumpulan Data, 2020)           Americano, dan 1.182 gelas untuk Cappucino.
+                                                     Pada pengolahan data dilakukan uji dengan
+
+
+
+13                                                 BINA TEKNIKA, Volume 17 Nomor 1, Edisi Juni 2020, 9-15
+   kriteria out of control untuk menguji data yang                      nilai parameter alfa yang terbaik yaitu sebesar
+   diprediksi dan untuk mengetahui apakah hasil                         0,372. Berdasarkan hasil pengolahan data dengan
+   yang diprediksi berada dalam rentang kendali,                        melihat nilai MAPE, maka model peramalan
+   dalam hal ini data yang diperoleh berada dalam                       double expoensial smoothing dengan pendekatan
+   rentang kendali maka data tersebut dapat                             satu parameter (Des Brown) merupakan model
+   digunakan.                                                           dengan nilai MAPE terkecil yaitu sebesar 0,39%.
+
+Pemilihan     Model     Peramalan      Terbaik                                     Tabel 6 Error pada Cappucino
+Berdasarkan Nilai Kesalahan Peramalan
+(Error)
+1. Nilai Kesalahan (Error) pada kopi susu
+                  Tabel 4 Error pada Kopi Susu
+                                                                        Sehingga ditentukan model peramalan untuk
+                                                                        Cappucino adalah double exponensial smoothing
+                                                                        dengan pendekatan satu parameter (Des Brown).
+
+   Pada penelitian ini Alfa yang digunakan pada                    Hasil Peramalan
+   pengolahan data dipilih sacara acak yaitu sebesar
+   0,5 yang kemudian mencari nilai parameter                               Tabel 7 Hasil Peramalan Motode Terbaik
+   terbaik menggunakan solver untuk mendapatkan
+   nilai parameter alfa yang terbaik yaitu sebesar
+   0,309. Berdasarkan hasil pengolahan data dengan
+   melihat nilai MAPE, maka model peramalan
+   double exponensial smoothing dengan pendekatan
+   satu parameter (Des Brown) merupakan model
+   dengan nilai MAPE terkecil yaiu sebesar 0,27%.
+   Sehinggan ditentukan model peramalan untuk
+   Kopi Susu adalah double exponensial smoothing
+   dengan pendekatan satu parameter (Des Brown).
+                                                                   Berdasarkan hasil rekapitulasi diatas menunjukkan
+2. Nilai Kesalahan (Error) pada Americano
+                                                                   bahwa untuk semua jenis kopi yang dilakukan
+                  Tabel 5 Error pada Americano                     peramalan nilai MAPE terkecilnya yaitu pada
+                                                                   metode double exponensial smoothing dengan
+                                                                   pendekatan satu parameter (Des Brown), hal ini
+                                                                   dikarenakan semua pola data untuk ketiga jenis
+                                                                   kopi memiliki pola yang sama yaitu cenderung
+                                                                   stabil. Hasil peramalan diatas menunjukkan bahwa
+   Pada penelitian ini Alfa yang digunakan pada                    sebanyak 3.498 gelas, dengan rincian 1920 gelas
+   pengolahan data dipilih secara acak yaitu sebesar               untuk Kopi Susu, 754 gelas Americano, dan 824
+   0,5 yang kemudian mencari nilai parameter                       gelas untuk Cappucino.
+   terbaik menggunakan solver untuk mendapatkan
+   nilai parameter alfa yang terbaik yaitu sebesar                 SIMPULAN
+   0,214. Berdasarkan hasil pengolahan data dengan                        Berdasarkan pembahasan yang telah
+   melihat nilai MAPE, maka model peramalan                        dilakukan, maka dapat ditarik kesimpulan dalam
+   double exponensial smoothing dengan pendekatan                  penelitian ini sebagai berikut:
+   satu parameter (Des Brown) merupakan model                      1. Pola data yang dihasilkan dari data penjualan kopi
+   dengan nilai MAPE terkecil yaiu sebesar 0,37%.                     titik di Café Kopi Titik pada menu best seller
+   Sehinggan ditentukan model peramalan untuk                         adalah pola data tren yang kemudian digunakan
+   Americano adalah double expoensial smoothing                       permalan dengan metode double expoensial
+   dengan pendekatan satu parameter (Des Brown).                      smoothing dengan pendekatan satu parameter
+                                                                      (Des Brown) dan dua parameter (Des Holt)
+3. Nilai Kesalahan (Error) pada Cappucino                          2. Metode double expoensial smoothing dengan
+   Pada penelitian ini Alfa yang digunakan pada                       pendekatan satu parameter (Des Brown)
+   pengolahan data dipilih secara acak yaitu sebesar                  merupakan metode terpilih untuk semua jenis kopi
+   0,5 yang kemudian mencari nilai parameter                          yaitu kopi susu, americano, dan cappuccino
+   terbaik menggunakan solver untuk mendapatkan                       dengan nilai MAPE masing-masing sebesar
+
+
+
+Analisis Perancangan Kebutuhan Kopi Best Seller (Jannati, D; Sari, S)                                                14
+   0,268285274%,         0,36874754%,          dan             Double      Exponential  Smoothing       Dari
+   0,389056107%                                                Brown. Jurnal Eksponensial, 7(1), 33-40.
+3. Total kopi yang terjual untuk memenuhi                Sari, S., Maharani, S. A., Prakoso, P. E.,
+   permintaan pelanggan berdasarkan hasil permalan             Putrisardjono, D. J., & Zaini, A. R. (2020).
+   adalah 3.498 gelas, dengan rincian 1.920 gelas              Analisis Peramalan Permintaan Kopi Susu Di
+   untuk Kopi Susu, 754 gelas Americano, dan 824               Café Kopi Margonda. Journal Industrial
+   gelas untuk Cappucino                                       Servicess, 6(1), 27-30.
+                                                         Yulitasari, A. (2011). Perbandingan metode
+DAFTAR PUSTAKA                                                 pemulusan eksponensial ganda holt dengan
+Derry, C., & Eko Setiawan, S. T. (2019). Peramalan             metode pemulusan eksponensial ganda brown
+       Permintaan Produk Handuk Dengan Metode                  (Doctoral dissertation, Universitas Negeri
+       Time Series (Studi Kasus: CV. Ngremboko                 Semarang).
+       Dusun Ngendo Janti Klaten) (Doctoral
+       dissertation, Universitas Muhammadiyah
+       Surakarta).
+Habsari, H. D. P., Purnamasari, I., & Yuniarti, D.
+       (2020). PERAMALAN MENGGUNAKAN
+       METODE         DOUBLE         EXPONENTIAL
+       SMOOTHING DAN VERIFIKASI HASIL
+       PERAMALAN MENGGUNAKAN GRAFIK
+       PENGENDALI           TRACKING          SIGNAL
+       (STUDI KASUS: DATA IHK PROVINSI
+       KALIMANTAN              TIMUR). BAREKENG:
+       Jurnal Ilmu Matematika dan Terapan, 14(1),
+       013-022.
+Hasanah, N. (2019). Peramalan Permintaan Produk
+       Olahan Kopi pada Perusahaan Daerah
+       Perkebunan (PDP) Kahyangan Bagian Unit
+       Usaha Lain (UUL) Kabupaten Jember
+       menggunakan       Jaringan      Saraf    Tiruan
+       (JST) (Doctoral dissertation, Program Studi
+       Teknologi Industri Pertanian).
+Inayah, Z. (2010). Perbandingan Metode Holt dan
+       Brown pada Double Exponential Smoothing
+       (Peramalan Jumlah Kejadian TB Paru)
+       (Doctoral     dissertation,    UNIVERSITAS
+       AIRLANGGA).
+Junaedi, D., & Mas' ud, M. I. (2018). Penerapan
+       Metode Forecasting dalam Perencanaan
+       Produksi Bakpia dengan Menggunakan
+       Software POM Guna Memenuhi Permintaan
+       Konsumen. JKIE         (Journal     Knowledge
+       Industrial Engineering), 5(3), 121-128.
+Nugraha, E. Y., & Suletra, I. W. (2017). Analisis
+       Metode Peramalan Permintaan Terbaik Produk
+       Oxycan pada PT. Samator Gresik. In Jurnal
+       Seminar dan Konferensi Nasional IDEC (pp.
+       414-422).
+PAKAYA, S. R. (2018). PERAMALAN
+       PENJUALAN            LISTRIK          DENGAN
+       MEMBANDINGKAN METODE DOUBLE
+       EKSPONENTIAL SMOOTHING BROWN
+       DAN         DOUBLE          EKSPONENTIAL
+       SMOOTHING HOLT (Studi Kasus Pada PLN
+       Cabang Gorontalo). Skripsi, 1(413413005).
+Pujiati, E., Yuniarti, D., & Goejantoro, R. (2017).
+       Peramalan Dengan Menggunakan Metode
+
+
+
+15                                                       BINA TEKNIKA, Volume 17 Nomor 1, Edisi Juni 2020, 9-15
+
