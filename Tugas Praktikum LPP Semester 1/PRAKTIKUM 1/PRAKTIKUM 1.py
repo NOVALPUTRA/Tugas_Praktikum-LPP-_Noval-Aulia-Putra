@@ -21,7 +21,7 @@ MUSTARD =  (3,252,40)
 # init
 pygame.init()
 screen = pygame.display.set_mode(SCREEN_SIZE)
-pygame.display.set_caption('Yehu\'s Platform Game')
+pygame.display.set_caption('Marmut\'s Platform Game')
 clock = pygame.time.Clock()
 font = pygame.font.Font(pygame.font.get_default_font(), 24)
 
